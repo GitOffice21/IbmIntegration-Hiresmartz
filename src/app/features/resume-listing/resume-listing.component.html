@@ -1,0 +1,188 @@
+
+
+ <app-loader [isLoading]="loading"></app-loader>
+<div class="resume_listing_section">
+
+
+  <button   *ngIf="!isListResumeRoute"  class="upload-cv-button"   [class.blurred]="loading" (click)="fileInput.click()">
+    <img src="assets/Upload-Icon.png" />
+    Upload CV
+  </button>
+  <input
+    type="file"
+    #fileInput
+    style="display: none"
+    (change)="onFileSelected($event)"
+    multiple
+    accept="application/pdf"
+  />
+
+  
+    <div class="resume_listing_body">
+
+        <ng-container *ngIf="dataSource.data.length>0 else NoRecordFound ">
+
+            <div class="table_element">
+
+                <table matSort mat-table [dataSource]="dataSource">
+            
+                    <ng-container *ngFor="let column of displayedColumns">
+            
+                        <ng-container [matColumnDef]="column">
+                            <ng-container *ngIf="isSort(column) else NoSort">
+    
+                                <th mat-sort-header mat-header-cell *matHeaderCellDef> {{ColumnMapping[column]}} </th>
+    
+    
+                            </ng-container>
+    
+                            <ng-template #NoSort>
+    
+                                
+                              <th mat-header-cell *matHeaderCellDef>{{ColumnMapping[column]}} </th>
+    
+    
+                            </ng-template>
+                  
+    
+            
+                    <ng-container [ngSwitch]="column.toLowerCase()">
+            
+                        <td mat-cell *matCellDef="let element;let i=index"> 
+            
+                        <ng-container *ngSwitchCase="'sno'">
+            
+                            {{i+1}}
+            
+                            </ng-container>
+    
+                            <ng-container *ngSwitchCase="'cvscore'">
+                               
+                                <div class="score_board" [ngClass]="getColorforScore(element.score[dataMapping[column]])">
+                                   
+                                    {{element.score[dataMapping[column]]}} 
+    
+                                </div>
+    
+                            </ng-container>
+            
+                            <ng-container *ngSwitchCase="'viewdetails'" >
+    
+                                <div class="view_details_button" >
+    
+                                    <mat-icon (click)="ViewDetails(element)" matTooltip="View Details">visibility</mat-icon>
+                                </div>
+            
+                            </ng-container>
+            
+                            <ng-container *ngSwitchCase="'candidatename'">
+    
+                       
+                                {{element.score[dataMapping[column]]}} 
+            
+                                </ng-container>
+    
+                                
+                            <ng-container *ngSwitchCase="'email'">
+<!--     
+                       {{dataMapping[column]}} -->
+                                {{element.score[dataMapping[column]]}} 
+            
+                                </ng-container>
+    
+                                <ng-container *ngSwitchCase="'phonenumber'">
+    
+                       
+                                    {{element.score[dataMapping[column]]}} 
+                
+                                    </ng-container>
+                        </td>
+            
+            
+            
+            
+                        </ng-container>
+                    <td mat-cell *matCellDef="let element"> {{element[ColumnMapping[column]]}} </td>
+                  </ng-container>
+            
+                    </ng-container>
+    
+    
+                    <ng-container *ngIf="!expliicit_loader">
+    
+                        <tr class="mat-row" *matNoDataRow >
+          
+                            <td class="mat-cell Nodatacell" [attr.colspan]="displayedColumns.length">
+                            
+                              <div class="data_body">
+                            
+                                <mat-icon>info</mat-icon>
+                            
+                                No Records Found
+                            
+                              </div>
+                            
+                            </td>
+                            
+                            
+                            </tr> 
+    
+                    </ng-container>
+               
+            
+            
+            
+            
+              
+            
+                
+              
+                  <tr mat-header-row class="mat_table_header_row" *matHeaderRowDef="displayedColumns sticky:true"></tr>
+                  <tr class="mat_table_data_row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                   <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns" class="footer-row"></tr> -->
+                </table>
+              
+              </div>
+    
+              <div class="spinner_module" *ngIf="expliicit_loader">
+                    <mat-spinner [diameter]="25"></mat-spinner>
+    
+                   &nbsp; <span>Loading...</span>
+    
+              </div>
+    
+    
+              
+              <mat-paginator [length]="dataSource.data.length"
+              [pageSize]="10"
+              [pageSizeOptions]="[10, 20, 30, 40]"
+              aria-label="Select page of periodic elements">
+    </mat-paginator>
+    
+    
+
+
+        </ng-container>
+
+
+        
+
+      
+
+<ng-template #NoRecordFound>
+     
+    <div class="no_record_section" *ngIf="!expliicit_loader">
+      <img src="assets/No_Record_found.png" alt="">
+      <p class="no-data-message-header">No data found</p>
+      <span>Please try again later after some time</span>
+    </div>
+
+  </ng-template>
+          
+
+
+
+    </div>
+
+</div>
+

@@ -1,0 +1,85 @@
+
+  
+  <app-loader [isLoading]="loading"></app-loader>
+  <button *ngIf="canUpload() && isData()" class="upload-cv-button"  [class.blurred]="loading" (click)="fileInput.click()" >
+    <img src="assets/Upload-Icon.png" />
+    Upload CV
+  </button>
+  <input
+    type="file"
+    #fileInput
+    style="display: none"
+    (change)="onFileSelected($event)"
+    multiple
+    accept="application/pdf"
+  />
+  
+
+  <div class="job-application-container" >
+    <div class="questions-container"  *ngIf="isData() else NoRecordFound">
+      <p class="section-title" >AI Questions</p>
+  
+      <div class="questions-section">
+        <div class="section-header" (click)="toggleSection('competency')">
+          <h3 class="section-name">Competency-Based Questions</h3>
+          <button mat-icon-button class="expand-button" [class.expanded]="competencyQuestionsExpanded">
+            <mat-icon>{{ competencyQuestionsExpanded ? 'remove' : 'add' }}</mat-icon>
+          </button>
+        </div>
+        
+        <div class="questions-list" *ngIf="competencyQuestionsExpanded">
+          <div class="question-item" *ngFor="let question of competencyQuestions; let i=index">
+
+             <div style="margin-right: 5px;">{{i+1}}. </div>
+            {{ question }}
+          </div>
+        </div>
+      </div>
+  
+      <div class="questions-section">
+        <div class="section-header" (click)="toggleSection('openEnded')">
+          <h3 class="section-name">Open-Ended Questions</h3>
+          <button mat-icon-button class="expand-button" [class.expanded]="openEndedQuestionsExpanded">
+            <mat-icon>{{ openEndedQuestionsExpanded ? 'remove' : 'add' }}</mat-icon>
+          </button>
+        </div>
+        
+        <div class="questions-list" *ngIf="openEndedQuestionsExpanded">
+          <div class="question-item" *ngFor="let question of openEndedQuestions; let i=index">
+            <div style="margin-right: 5px;">{{i+1}}. </div>
+            {{ question }}
+
+          </div>
+        </div>
+      </div>
+  
+      <div class="questions-section">
+        <div class="section-header" (click)="toggleSection('passFall')">
+          <h3 class="section-name">Pass/Fail Questions</h3>
+          <button mat-icon-button class="expand-button" [class.expanded]="passFallQuestionsExpanded">
+            <mat-icon>{{ passFallQuestionsExpanded ? 'remove' : 'add' }}</mat-icon>
+          </button>
+        </div>
+        
+        <div class="questions-list" *ngIf="passFallQuestionsExpanded">
+          <div class="question-item" *ngFor="let question of passFallQuestions; let i=index">
+            <!-- {{ question }} -->
+            <div style="margin-right: 5px;">{{i+1}}. </div>
+            {{ question }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+     
+
+        <ng-template #NoRecordFound  >
+     
+          <div class="no_record_section" *ngIf="!loading">
+            <img src="assets/No_Record_found.png" alt="">
+            <p class="no-data-message-header">No data found</p>
+            <span>Please try again later after some time</span>
+          </div>
+        </ng-template>
+  </div>

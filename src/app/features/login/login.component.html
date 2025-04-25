@@ -1,0 +1,113 @@
+<app-loader [isLoading]="loading"></app-loader>
+<div class="main">
+  <div class="left-section"></div>
+  <div class="right-section">
+    <div class="toplogo">
+      <span class="logo-text"
+        >Hire<span style="color: black">Smartz</span></span
+      >
+    </div>
+    <div class="main-content">
+      <div class="formcard">
+        <p class="heading">Login</p>
+        <span class="subheading">Welcome to Hiresmartz Recruitment</span>
+        <form [formGroup]="loginForm" class="loginform">
+          <div class="detail">
+            <!-- <mat-label>Email</mat-label> -->
+            <mat-form-field appearance="outline">
+              <input
+                type="email"
+                formControlName="email"
+                matInput
+                placeholder="Email"
+              />
+              <!-- <mat-error *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
+                Please enter an email.
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['pattern']">
+                Enter a valid email address.
+              </mat-error> -->
+            </mat-form-field>
+            <div class="errormessage">
+              <mat-error
+                *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']"
+              >
+                Please enter an email.
+              </mat-error>
+              <mat-error
+                *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['pattern']"
+              >
+                Enter a valid email address.
+              </mat-error>
+            </div>
+          </div>
+          <div class="detail">
+            <!-- <mat-label>Password</mat-label> -->
+            <mat-form-field appearance="outline">
+              <input
+                autocomplete="new-password"
+                matInput
+                formControlName="password"
+                placeholder="Password"
+                [type]="hide() ? 'password' : 'text'"
+              />
+              <button
+                type="button"
+                mat-icon-button
+                matSuffix
+                (click)="clickEvent($event)"
+                [attr.aria-pressed]="hide()"
+                style="margin-right: 20px"
+              >
+                <mat-icon style="color: #424242c2">{{
+                  hide() ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+              <!-- <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">
+                Please enter a password.
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['minlength']">
+                Password must be at least 8 characters long.
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['pattern']">
+                Password must include one letter, one number, and one special character.
+              </mat-error> -->
+            </mat-form-field>
+            <div class="errormessage">
+              <mat-error
+                *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']"
+              >
+                Please enter a password.
+              </mat-error>
+              <mat-error
+                *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['minlength']"
+              >
+                Password must be at least 8 characters long.
+              </mat-error>
+              <mat-error
+                *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['pattern']"
+              >
+                Password must include one letter, one number, and one special
+                character.
+              </mat-error>
+            </div>
+          </div>
+          <div class="checks">
+            <mat-checkbox formControlName="rememberMe" class="example-margin"
+              >Remember Me?</mat-checkbox
+            >
+          </div>
+          <button type="submit" (click)="onSubmit()" class="loginbutton">
+            LOGIN
+          </button>
+          <div class="forgot-password" (click)="onForgotPassword()">
+            Forgot Password?
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Copyright ©2025 Hiresmartz Recruitment. All Rights Reserved.</p>
+    </div>
+  </div>
+</div>

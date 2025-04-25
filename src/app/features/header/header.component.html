@@ -1,0 +1,80 @@
+
+<mat-toolbar color="primary" class="header-toolbar">
+  <div class="header-container">
+    <div class="logo-section">
+      <a routerLink="/">
+        <span class="logo-text">
+          Hire <span style="color: white">Smartz</span>
+        </span>
+      </a>
+    </div>
+    <div class="spacer"></div>
+    <div class="header-stats">
+      <!-- <div class="stat-item">
+        <span style="color: #f58220; font-size: 15px; font-weight: 600"
+          >Available Hits:
+        </span>
+        <span>{{ availableHits }}/{{ totalHits }}</span>
+      </div>
+      <div class="stat-item">
+        <span style="color: #f58220; font-size: 15px; font-weight: 600"
+          >Available Tokens:</span
+        >
+        <span>{{ totalTokens }}/{{ availableTokens }}</span>
+      </div> -->
+      <button class="logout-btn" (click)="logout()">LOGOUT</button>
+      
+    </div>
+    <div class="mobile-menu-container" [class.open]="isMobileMenuOpen">
+      <div class="mobile-menu-toggle" (click)="toggleMobileMenu()">
+        <span class="menu-icon">&#9776;</span>
+      </div>
+    
+      <div class="mobile-sidebar">
+        <div class="mobile-header">
+          <button class="close-btn" (click)="toggleMobileMenu()">×</button>
+        </div>
+    
+        <div class="mobile-stats">
+          <!-- <div class="stat-item">
+            <span class="stat-label">Available Hits:</span>
+            <span class="stat-value">{{ availableHits }}/{{ totalHits }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Available Tokens:</span>
+            <span class="stat-value">{{ totalTokens }}/{{ availableTokens }}</span>
+          </div> -->
+          <button class="logout-btn" (click)="logout()">LOGOUT</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  
+</mat-toolbar>
+<nav class="sub-navigation">
+  <div class="nav-container" >
+    
+    <div class="header" *ngIf="!isJobFormRoute">
+      <a href="javascript:history.back()" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5"></path>
+          <path d="M12 19l-7-7 7-7"></path>
+        </svg>
+        Back
+      </a>
+    </div>  
+
+    <div class="navbar_content" [ngClass]="isJobFormRoute?'contentpadding':''">
+
+      <a routerLink="/job-postings" routerLinkActive="active" class="nav-item">
+        <img src="assets/Job_Logo.png" class="logo" />
+        <span style="padding-bottom: 2%">{{ pageTitle }}</span>
+      </a>
+      <button class="upload-cv-button" *ngIf="isJobFormPage()" (click)="historypage()" >HISTORY</button>
+
+
+    </div>
+
+  </div>
+</nav>

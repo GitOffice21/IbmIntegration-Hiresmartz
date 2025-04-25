@@ -1,0 +1,59 @@
+
+ <app-loader [isLoading]="loading"></app-loader>
+
+<div class="history-container">
+  <!-- Left Sidebar (15%) -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <!-- <mat-icon>description</mat-icon> -->
+      <mat-icon (click)="goBack()" style="cursor: pointer; color: black;">arrow_back</mat-icon>
+      <span>Back</span>
+    </div>
+
+
+
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Job Description</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        
+
+        <mat-selection-list [multiple]="false">
+          <mat-list-option
+          [ngClass]="{'active':job.jd_id===selectedJdId}"
+            *ngFor="let job of jdlist"
+            (click)="selectJobTitle(job)"
+            [selected]="job.jd_id===selectedJdId"
+          >
+
+    
+            {{ job.jd_parameters.job_title }}
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <!-- Main Content (85%) -->
+
+  <div class="main-content">
+ 
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" [selectedIndex]="ActivetabIndex" (selectedTabChange)="onTabChange($event)">
+        <mat-tab *ngFor="let item of menuItems" >
+          <ng-template mat-tab-label>
+            <mat-icon style="font-size: 20px; margin-right: 5px;">{{ item.icon }}</mat-icon>
+            {{ item.label }}
+          </ng-template>
+     
+        </mat-tab>
+      </mat-tab-group>
+      
+
+      <div style="padding: 2%;">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

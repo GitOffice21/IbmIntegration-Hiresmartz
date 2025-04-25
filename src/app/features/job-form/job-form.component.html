@@ -1,0 +1,114 @@
+<app-loader [isLoading]="loading"></app-loader>
+<div class="form-container ">
+    <h2>Create Job Description</h2>
+ 
+    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <div class="form-column">
+          <div class="field-wrapper">
+            <label class="label">Job Title</label>
+            <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+              <input matInput formControlName="jobTitle">
+              <mat-error *ngIf="jobForm.get('jobTitle')?.invalid">
+                {{ getErrorMessage('jobTitle') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+ 
+          <div class="field-wrapper">
+            <label class="label">Experience (in years)</label>
+            <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+              <mat-select formControlName="experience">
+                <mat-option *ngFor="let year of experienceOptions" [value]="year">
+                  {{ year }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="jobForm.get('experience')?.invalid">
+                {{ getErrorMessage('experience') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+ 
+          <div class="field-wrapper">
+            <label class="label">Mandatory Skills</label>
+            <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+              <input matInput formControlName="mandatorySkills">
+              <mat-error *ngIf="jobForm.get('mandatorySkills')?.invalid">
+                {{ getErrorMessage('mandatorySkills') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="field-wrapper">
+            <label class="label">Vertical</label>
+            <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+              <mat-select formControlName="vertical">
+                <mat-option *ngFor="let level of vertical" [value]="level">
+                  {{ level }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="jobForm.get('vertical')?.invalid">
+                {{ getErrorMessage('vertical') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+        </div>
+ 
+
+  
+
+        <div class="form-column">
+          <div class="field-wrapper">
+            <label class="label">Education Preference</label>
+            <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+              <input matInput formControlName="educationPreference">
+              <mat-error *ngIf="jobForm.get('educationPreference')?.invalid">
+                {{ getErrorMessage('educationPreference') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+ 
+          <div class="field-wrapper">
+            <label class="label">Communication Skills</label>
+            <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+              <mat-select formControlName="communicationSkills">
+                <mat-option *ngFor="let level of communicationLevels" [value]="level">
+                  {{ level }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="jobForm.get('communicationSkills')?.invalid">
+                {{ getErrorMessage('communicationSkills') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+          
+ 
+          <div class="field-wrapper">
+            <label class="label">Optional Skills</label>
+            <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+              <input matInput formControlName="optionalSkills">
+              <mat-error *ngIf="jobForm.get('optionalSkills')?.invalid">
+                {{ getErrorMessage('optionalSkills') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+   
+
+ 
+      <div class="button-container">
+        <button
+          mat-raised-button
+     
+          type="submit"
+          class="submit-button"
+         
+        >
+          CREATE JOB DESCRIPTION
+        </button>
+      </div>
+    </form>
+  </div> 

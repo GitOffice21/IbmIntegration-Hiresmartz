@@ -1,0 +1,46 @@
+
+<app-loader [isLoading]="loading"></app-loader>
+<div class="job-description-container"  [class.hidden]="loading">
+  <!-- <div class="job-description-header">JOB DESCRIPTION</div> -->
+
+  <div class="job-description-content" *ngIf="sections.length>0 else NoRecordFound ">
+    <div class="job-title-section">
+      <h2>{{ jobDetails.job_title }}</h2>
+      <!-- <button class="edit-button">
+        <img src="assets/EditButton.png" style="height: 22px; width: 22px" />
+        EDIT
+      </button> -->
+    </div>
+    <hr style="color: rgb(248, 242, 242); margin-left: -20px; margin-right: -20px; ">
+
+    <div class="job-details" >
+      <div class="job-detail-item" *ngFor="let section of sections">
+        <span class="label">{{section.title}}</span>
+        <p style="white-space: pre-line;" [innerHTML]="section.content">
+          <!-- {{ section.content }} -->
+        
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #NoRecordFound>
+     
+    <div class="no_record_section">
+      <img src="assets/No_Record_found.png" alt="">
+      <p class="no-data-message-header">No data found</p>
+      <span>Please try again later after some time</span>
+    </div>
+
+  </ng-template>
+  <!-- <div class="description-footer">
+    Copyright ©2025 IBM Recruitment. All Rights Reserved.
+  </div> -->
+  <div class="job-description-footer" *ngIf="sections.length>0 && !isHistoryRoute">
+    <!-- <button class="generate-button" (click)="generateQuestions()">GENERATE AI QUESTIONS ›</button> -->
+    <button  class="generate-button"  (click)="generateQuestions()">GENERATE AI QUESTIONS ›</button>
+
+  </div>
+</div>
+
+

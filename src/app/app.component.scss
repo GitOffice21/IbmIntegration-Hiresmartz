@@ -1,0 +1,50 @@
+
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    // overflow: hidden;
+    overflow: auto;
+    scrollbar-width: thin;
+    width: 100%;
+  
+  }
+  
+  .content-container {
+    flex: 1;
+    // overflow: hidden;
+    overflow: auto;
+    width: 100%;
+    position: relative;
+    padding: 0px;
+    scrollbar-width: thin;
+   
+  }
+
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    // padding: 10px;
+    z-index: 1;
+    margin-left: 36px;
+  }
+  
+  .back-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: 400;
+    font-size: 16px;
+  }
+  
+  .back-link svg {
+    margin-right: 5px;
+  }
+  @media screen and (max-width: 768px) {
+    .content-container{
+      display: flex;
+      flex-direction: column;
+    }
+  }

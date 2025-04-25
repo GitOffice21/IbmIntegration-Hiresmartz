@@ -1,0 +1,28 @@
+.footer-toolbar {
+    background-color: white;
+    height: 48px;
+    color: #616161;
+    font-size: 14px;
+    font-family: sans-serif;
+ 
+  }
+  
+  .footer-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+
+
+  }
+  
+  @media (max-width: 768px) {
+    .footer-container {
+      padding: 0 8px;
+    }
+    
+    .copyright {
+      font-size: 14px;
+    }
+  }

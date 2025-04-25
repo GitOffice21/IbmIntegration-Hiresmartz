@@ -1,0 +1,331 @@
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.history-container {
+  display: flex;
+  height: calc(100vh - 122px); // Adjust for header & footer
+  overflow: hidden;
+}
+
+// Sidebar Styles (15%)
+.sidebar {
+  width: 15%;
+  min-width: 180px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  scrollbar-width: thin;
+  
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background-color: #e0e0e0;
+    border-bottom: 1px solid #ccc;
+    
+    mat-icon {
+      margin-right: 8px;
+      color: #ff7300; // IBM orange
+    }
+    
+    span {
+      font-weight: 500;
+      font-size: 16px;
+    }
+  }
+  
+  mat-expansion-panel {
+    box-shadow: none;
+    background-color: transparent;
+    
+    mat-panel-title {
+      font-weight: 500;
+    }
+  }
+  
+  mat-selection-list {
+    padding: 0;
+    
+    mat-list-option {
+      height: 48px;
+      
+      &.mat-list-item-focus,
+      &.mat-list-option-selected {
+        background-color: rgba(255, 115, 0, 0.1); // Light IBM orange
+        
+        &::before {
+          border-left: 4px solid #ff7300;
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+.active
+{
+  background-color: #dbd8d8 !important;
+  pointer-events: none !important;
+}
+
+// Main Content Styles (85%)
+.main-content {
+  flex: 1;
+  padding: 0;
+  overflow-y: auto;
+  background-color: #fafafa;
+  scrollbar-width: thin;
+  
+  .full-width-tabs {
+    height: 100%;
+    
+    ::ng-deep .mat-tab-body-wrapper {
+      height: calc(100% - 48px); // Height minus the tab header
+    }
+  }
+  
+  .tab-content {
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+    
+    mat-card {
+      height: calc(100% - 40px);
+      margin-bottom: 20px;
+      
+      mat-card-header {
+        margin-bottom: 16px;
+        
+        mat-card-title {
+          color: #333;
+          font-size: 20px;
+          margin-bottom: 0;
+        }
+      }
+      
+      mat-card-content {
+        p {
+          line-height: 1.6;
+          color: #666;
+        }
+        
+        .no-content {
+          color: #999;
+          font-style: italic;
+          text-align: center;
+          margin-top: 48px;
+        }
+        
+        mat-accordion {
+          margin-top: 16px;
+          
+          mat-expansion-panel {
+            margin-bottom: 8px;
+            
+            mat-panel-title {
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // CV Score specific styles
+  .score-container {
+    display: flex;
+    padding: 24px 0;
+    
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 32px;
+      
+      &.high-score {
+        background-color: #43a047; // Green
+        color: white;
+      }
+      
+      &.medium-score {
+        background-color: #fb8c00; // Orange
+        color: white;
+      }
+      
+      &.low-score {
+        background-color: #e53935; // Red
+        color: white;
+      }
+      
+      .score-value {
+        font-size: 32px;
+        font-weight: bold;
+      }
+    }
+    
+    .score-details {
+      flex: 1;
+      
+      h3 {
+        margin-top: 0;
+        color: #333;
+      }
+      
+      .high-score-text {
+        color: #43a047;
+        font-weight: 500;
+      }
+      
+      .medium-score-text {
+        color: #fb8c00;
+        font-weight: 500;
+      }
+      
+      .low-score-text {
+        color: #e53935;
+        font-weight: 500;
+      }
+      
+      mat-progress-bar {
+        height: 8px;
+        margin-top: 16px;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+// Custom theme colors
+::ng-deep {
+  .mat-tab-label {
+    min-width: 120px;
+    padding: 0 24px;
+    
+    &.mat-tab-label-active {
+      opacity: 1;
+      color: #ff7300; // IBM orange
+      font-weight: 500;
+    }
+  }
+  
+  .mat-ink-bar {
+    background-color: #ff7300 !important; // IBM orange
+  }
+  
+  .mat-progress-bar-fill::after {
+    background-color: #ff7300; // IBM orange
+  }
+}
+
+// Responsive styles
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    min-width: 160px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .history-container {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .sidebar {
+    width: 100%;
+    min-width: auto;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    max-height: 250px;
+  }
+  
+  .main-content {
+    width: 100%;
+    height: calc(100vh - 372px); // Adjusted for header, footer, and sidebar
+  }
+  
+  .score-container {
+    flex-direction: column;
+    align-items: center;
+    
+    .score-circle {
+      margin-right: 0;
+      margin-bottom: 24px;
+    }
+    
+    .score-details {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tab-content {
+    padding: 12px;
+  }
+  
+  ::ng-deep .mat-tab-label {
+    min-width: 0;
+    padding: 0 12px;
+    font-size: 13px;
+  }
+  
+  .sidebar-header {
+    span {
+      font-size: 14px;
+    }
+  }
+}
+::ng-deep .mat-mdc-tab-header{
+  height: 100% !important;
+}
+::ng-deep .mat-mdc-tab-body-wrapper {
+  display: none !important;
+}
+::ng-deep .mat-mdc-tab-labels {
+  height: 100% !important;
+}
+::ng-deep .mat-mdc-tab.mdc-tab {
+  height: 100% !important;
+}
+::ng-deep .mat-mdc-tab-label-container {
+  padding-left: 20px !important;
+  height: 40px !important;
+  
+}
+::ng-deep .mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+  --mdc-tab-indicator-active-indicator-color: #F58220 !important;
+  --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38) !important;
+  --mat-tab-header-inactive-label-text-color: #222222 !important;
+  --mat-tab-header-active-label-text-color: #F58220!important;
+  --mat-tab-header-active-ripple-color: white !important;
+  --mat-tab-header-inactive-ripple-color: white !important;
+  --mat-tab-header-inactive-focus-label-text-color:  #222222 !important;
+  --mat-tab-header-inactive-hover-label-text-color:  #222222 !important;
+  --mat-tab-header-active-focus-label-text-color:  #F58220 !important;
+  --mat-tab-header-active-hover-label-text-color:  #F58220 !important;
+  --mat-tab-header-active-focus-indicator-color: #F58220 !important;
+  --mat-tab-header-active-hover-indicator-color: #F58220 !important;
+}
+
+::ng-deep .mdc-list-item.mdc-list-item--with-one-line .mdc-list-item__end{
+  display: none !important;
+}
+::ng-deep .mat-mdc-tab-group {
+  height: 10% !important;
+}
+::ng-deep .mdc-list-item--with-trailing-radio.mdc-list-item{
+  padding-left: 3px !important;
+}

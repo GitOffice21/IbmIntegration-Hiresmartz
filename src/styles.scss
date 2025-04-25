@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%;overflow: auto;}
+body { margin: 0;
+    // font-family: sans-serif;
+    font-family: DM Sans, "Helvetica Neue", sans-serif !important;
+
+    scrollbar-color: #888 #f1f1f1; scrollbar-width: thin !important;
+overflow: auto;}
+ng-deep .mat-mdc-text-field-wrapper {
+    background-color: white !important;
+}
+
+
+
+
